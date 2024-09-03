@@ -1,0 +1,71 @@
+{% extends "loginbase.html" %}
+{%load static%}
+{%block title%}Posts{%endblock%}
+{%block head%}onecoder{% endblock %}
+{%block body%}
+
+<div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+        <form action="/addpost/" method="POST" enctype="multipart/form-data"  onsubmit='return fileValidation()'>
+            {% csrf_token %}
+            <div class="formbold-mb-5">
+                <label for="name" class="formbold-form-label"> Title </label>
+                <input type="text" name="title" id="name" placeholder="Enter The Title" class="formbold-form-input"
+                    required />
+            </div>
+            <div class="formbold-mb-5">
+                <label for="email" class="formbold-form-label"> Sub-Title </label>
+                <input type="text" name="subtitle" id="email" placeholder="Enter The Subtitle"
+                    class="formbold-form-input" required />
+            </div>
+
+            <div class="formbold-mb-5">
+                <label for="subject" class="formbold-form-label"> Slug </label>
+                <input type="text" name="slug" id="subject" placeholder="Enter a Slug"
+                    class="formbold-form-input" required />
+            </div>
+            <div class="formbold-mb-5">
+                <label for="subject" class="formbold-form-label"> Image: </label> 
+                <input class="form-control" type="file" id="formFile" onchange='return fileValidation()' name="image" required />
+                </div>
+            <div class="formbold-mb-5">
+                <label for="message" class="formbold-form-label"> Content </label>
+                <textarea rows="6" name="content" id="message" placeholder="Type The Blog"
+                    class="formbold-form-input" required></textarea>
+            </div>
+            <div>
+                <button class="formbold-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script>
+    function fileValidation() {
+        var fileInput = 
+            document.getElementById('formFile');
+         
+        var FilePath = fileInput.value;
+     
+        if (FilePath == '') {
+            alert("Please upload an image");
+    
+        } else {
+            var Extension = FilePath.substring(
+                    FilePath.lastIndexOf('.') + 1).toLowerCase();
+         
+    
+    if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                || Extension == "jpeg" || Extension == "jpg"){
+                    return true
+                }
+    else{
+        alert("Enter a image file")
+        return false
+    } 
+        
+    }
+    }
+</script>
+
+{%endblock%}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{%load static%}
+{%block title%}Home{%endblock%}
+{%block head%}onecoder{% endblock %}
+{%block body%}
+
+
+
+
+<div class="container my-4 " id='blogfont'>
+  
+
+    <lable class="test-secondary">Total result: {{total}}</label>
+
+  {%if blog%}
+  {%for i in blog%}
+  <div class="row mb-2">
+    <div class="">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-350 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">Onecoder</strong>
+          <h3 class="mb-0">{{i.title}}</h3>
+          <div class="mb-1 text-body-secondary">{{i.date}}</div>
+          <p class="card-text mb-auto">{{i.Subtitle}}</p>
+          <a href="/readblog/{{i.slug}}" class="icon-link gap-1 icon-link-hover stretched-link">
+            Continue reading
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="/media/{{i.img}}" width=400 height=300 />
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+  {%endif%}
+  
+  <nav class="blog-pagination" aria-label="Pagination">
+    <div class="d-flex justify-content-between">
+      <div>
+      {%if blog.has_previous %}
+    <a class="btn btn-outline-primary rounded-pill" href="/search?key={{key}}&page={{blog.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+    </svg> Back</a>
+    {%endif%}
+  </div><label class='text-secondary'>{{blog.number}} / {{blog.paginator.num_pages}}</label><div>
+    {%if blog.has_next %}
+    <a class="btn btn-outline-primary rounded-pill" href="/search?key={{key}}&page={{blog.next_page_number}}">Next <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+    </svg></a>
+    {%endif%}
+  </div>
+  </div>
+  </nav>
+
+
+{% endblock %}

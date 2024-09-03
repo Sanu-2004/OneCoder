@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{%load static%}
+{%block title%}Blog{%endblock%}
+{%block head%}onecoder{% endblock %}
+{%block body%}
+
+
+<div class='container mt-4' id='blogfont'>
+<div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        
+      </h3>
+
+      <article class="blog-post">
+        <h2 class="display-5 link-body-emphasis mb-1">{{blog.title}}</h2>
+        <p class="blog-post-meta text-secondary"> {{blog.date}} || by <a href="#">onecoder</a></p>
+
+        
+        <hr>
+        <h2>{{blog.Subtitle}}</h2>
+        
+
+        <hr />
+        <img src="/media/{{blog.img}}" class="img-fluid"  />
+        <hr />
+      
+        
+        <p class='h5'>{{blog.content | safe }}</p>
+        <p class="blog-post-meta text-secondary">views: {{blog.views}}</p>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-body-tertiary rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Thanks for Using our Website.<br /> We try to Post a Informative Blog Everyday</p>
+        </div>
+
+        <div>
+          <h4 class="fst-italic">Recent posts</h4>
+          <ul class="list-unstyled">
+            {%for i in blogs%}
+            <li>
+              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="/readblog/{{i.slug}}">
+                <img src="/media/{{i.img}}" class="bd-placeholder-img" width="97%" height="100" /><rect width="100%" height="100%" fill="#777"></rect>
+                <div class="col-lg-8">
+                  <h6 class="mb-0">{{i.title}}</h6>
+                  <small class="text-body-secondary">{{i.date}}</small>
+                </div>
+              </a>
+            </li>
+            {%endfor%}
+            
+          </ul>
+        </div>
+
+       
+
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+{%endblock%}
