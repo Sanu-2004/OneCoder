@@ -28,12 +28,12 @@ To run this blog website locally, follow these steps:
 
 1. Clone the repository:
     ```
-    git clone https://github.com/your-username/onecoder-blog.git
+    git clone https://github.com/Sanu-2004/OneCoder.git
     ```
 
 2. Navigate to the project directory:
     ```
-    cd onecoder-blog
+    cd onecoder
     ```
 
 3. Install the required dependencies:
